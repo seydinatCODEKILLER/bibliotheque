@@ -62,7 +62,7 @@ $admin = $stmt->fetch(PDO::FETCH_ASSOC);
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="#" class="sidebar-link text-decoration-none text-black d-none d-lg-flex">
+                                    <a href="views/admin/pages/emprunt.php" class="sidebar-link text-decoration-none text-black d-none d-lg-flex">
                                         <i class="ri-shopping-bag-line fs-4"></i>
                                         <span>Emprunts</span>
                                     </a>

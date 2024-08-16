@@ -11,6 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $success = $_SESSION["success"] ?? [];
+unset($_SESSION["success"]);
 $user_id = $_SESSION['user_id'];
 $user = getUserWithId($pdo, $user_id);
 $livres = getThreeFirstBooks($pdo);
@@ -21,13 +22,14 @@ $notification_count = getCountNotif($pdo, $user_id);
 <html lang="en">
 
 <head>
-    <title>Details - livres</title>
+    <title>Accueil</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="
     https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
     " rel="stylesheet" />
@@ -133,7 +135,7 @@ $notification_count = getCountNotif($pdo, $user_id);
                         <div class="row d-flex justify-content-between">
                             <div class="col-12 col-lg-12 bg-white shadow-sm">
                                 <div class="row py-4 d-flex justify-content-between align-items-center">
-                                    <div class="col-12 col-sm-8 col-lg-7 d-flex flex-column gap-4 mb-5 mb-lg-0">
+                                    <div class="col-12 col-sm-8 col-lg-7 d-flex flex-column gap-4 mb-5 mb-lg-0" data-aos-duration="1000" data-aos="fade-right">
                                         <h3>Bienvenue sur biblio <span class="nom"><?= $user["prenom"] ?></span></h3>
                                         <p class="m-0">
                                             Bienvenue sur Biblio, votre application de gestion de bibliothèque en ligne. Biblio vous permet de parcourir et d'emprunter des livres de manière simple et efficace, tout en offrant aux administrateurs les outils nécessaires pour gérer les collections et les abonnés. Profitez d'une expérience fluide pour découvrir et gérer vos lectures préférées !
@@ -142,19 +144,19 @@ $notification_count = getCountNotif($pdo, $user_id);
                                             <a href="#" class="btn text-white link-catalogue">Voir nos catalogues</a>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-4 col-lg-4 mb-5 mb-lg-0">
+                                    <div class="col-12 col-sm-4 col-lg-4 mb-5 mb-lg-0" data-aos-duration="1000" data-aos="fade-left">
                                         <img src="assets/img/hero.png" class="img-fluid" alt="hero">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
                                         <div class="bordure"></div>
                                         <h3 class="mt-3">Nos livres du moments</h3>
                                     </div>
                                 </div>
                                 <div class="row mt-5">
                                     <?php foreach ($livres as $k => $livre) : ?>
-                                        <div class="col-12 col-sm-4">
+                                        <div class="col-12 col-sm-4" data-aos="fade-up">
                                             <div class="card w-100 shadow-sm">
                                                 <img src="uploads/couvertures/<?= $livre["couverture"] ?>" class="card-img-top" alt="...">
                                                 <div class="card-body">
@@ -170,11 +172,11 @@ $notification_count = getCountNotif($pdo, $user_id);
                                     <?php endforeach; ?>
                                 </div>
                                 <div class="row mt-5">
-                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
                                         <div class="bordure"></div>
                                         <h3 class="mt-3">Evenements</h3>
                                     </div>
-                                    <div class="col-12 mt-5">
+                                    <div class="col-12 mt-5" data-aos="fade-up">
                                         <p class="m-0 text-center">
                                             Dans le cadre de notre projet "Biblio", la section "Événements pour les sciences de la lecture" vise à promouvoir la passion pour la lecture et la littérature à travers une série d'événements éducatifs et culturels. Cette initiative propose des rencontres avec des auteurs, des ateliers de lecture, des discussions thématiques et des conférences, offrant aux participants une opportunité unique d'explorer et de célébrer le monde des livres et des sciences de la lecture.
                                         </p>
@@ -192,7 +194,7 @@ $notification_count = getCountNotif($pdo, $user_id);
                                     </div>
                                 </div>
                                 <div class="row d-flex justify-content-between mt-5">
-                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
                                         <div class="bordure"></div>
                                         <h3 class="mt-3">Feeds</h3>
                                     </div>
@@ -302,6 +304,31 @@ $notification_count = getCountNotif($pdo, $user_id);
     </div>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="assets/javascript/home.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            // Global settings:
+            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+            startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+            initClassName: 'aos-init', // class applied after initialization
+            animatedClassName: 'aos-animate', // class applied on animation
+            useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+            disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+            debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+            throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+            offset: 120, // offset (in px) from the original trigger point
+            delay: 0, // values from 0 to 3000, with step 50ms
+            duration: 400, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: false, // whether animation should happen only once - while scrolling down
+            mirror: false, // whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

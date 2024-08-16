@@ -92,7 +92,7 @@ $categories = getCategories($pdo);
                     <div class="col-12">
                         <ul class="list-unstyled">
                             <li>
-                                <a href="controllers/user/deconnexion.php" class="sidebar-link text-decoration-none text-black d-none d-lg-block">
+                                <a href="../../../controllers/user/deconnexion.php" class="sidebar-link text-decoration-none text-black d-none d-lg-block">
                                     <i class="ri-logout-box-line fs-4"></i>
                                     <span>Deconnexion</span>
                                 </a>

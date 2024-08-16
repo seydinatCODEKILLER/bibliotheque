@@ -16,7 +16,7 @@ $selected_status = isset($_GET['status']) ? $_GET['status'] : '';
 $user = getUserWithId($pdo, $user_id);
 $livres = getLivres($pdo);
 $notification_count = getCountNotif($pdo, $user_id);
-$emprunts = getEmprunts($pdo, $selected_status);
+$emprunts = getEmpruntsUser($pdo, $selected_status, $user_id);
 
 ?>
 <!DOCTYPE html>

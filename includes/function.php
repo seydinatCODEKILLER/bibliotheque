@@ -243,3 +243,24 @@ function getEmprunts($pdo, $selected_status)
 
     return $stmt->fetchAll();
 }
+
+function getEmpruntsUser($pdo, $selected_status, $user_id)
+{
+    // Préparer la requête pour sélectionner les emprunts de l'utilisateur connecté
+    $query = "SELECT e.*, l.titre, l.auteur, u.nom, u.prenom FROM emprunts e 
+    JOIN livres l ON e.id_livre = l.id_livre 
+    JOIN users u ON e.id_user = u.id_user 
+    WHERE e.id_user = :user_id";
+
+    // Ajouter une condition supplémentaire si un statut est sélectionné
+    if (!empty($selected_status)) {
+        $query .= " AND e.status = :status";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([':user_id' => $user_id, ':status' => $selected_status]);
+    } else {
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([':user_id' => $user_id]);
+    }
+
+    return $stmt->fetchAll();
+}

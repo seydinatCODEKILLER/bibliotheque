@@ -24,7 +24,14 @@ unset($_SESSION['errors']);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
 
-<body class="d-flex justify-content-center">
+<body class="d-flex justify-content-center" style="background-image: linear-gradient(
+    to left bottom,
+    #ffffff,
+    #e3e4fe,
+    #bfcbfe,
+    #8eb5ff,
+    #38a1ff
+  );">
     <div class="container d-flex flex-column justify-content-center align-items-center">
         <div class="col-12 col-sm-10 col-lg-6">
             <div class="row mb-4">
